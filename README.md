@@ -7,17 +7,13 @@ pip install -r requirements.txt
 ```bash
 python bleu.py --ref my/ref.txt --hyp my/hyp.txt --max_order 4 --smooth False
 ```
-
-```bash
-python bleu.py --ref my/ref.txt --hyp my/hyp.txt --max_order 4 --smooth False
-```
 ```python
 import os, subprocess
 
 ref = "my/ref.txt" 
 hyp = "my/hyp.txt"
 
-command = "multi-bleu.perl"
+command = "multi-bleu.perl %s < %s"
 if os.name == "nt" :
     command = "perl %s" % command
 p = subprocess.Popen(command % (ref, hyp), stdout=subprocess.PIPE, shell=True)
